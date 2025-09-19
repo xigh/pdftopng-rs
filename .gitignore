@@ -1,0 +1,6 @@
+*.pdf
+*.dll
+output/
+target/
+Cargo.lock
+ollama-list.json

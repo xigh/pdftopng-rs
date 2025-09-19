@@ -1,0 +1,21 @@
+[package]
+name = "pdftopng-rs"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.99"
+async-stream = "0.3.6"
+base64 = "0.22.1"
+clap = { version = "4.5.45", features = ["derive"] }
+env_logger = "0.11.8"
+futures-util = "0.3.31"
+log = "0.4.28"
+pdfium-render = "0.8.35"
+png = "0.18.0"
+progress_bar = "1.4.0"
+reqwest = { version = "0.12.23", features = ["json", "stream", "rustls-tls"] }
+serde = "1.0.225"
+serde_json = "1.0.145"
+thiserror = "2.0.16"
+tokio = { version = "1.47.1", features = ["full"] }
