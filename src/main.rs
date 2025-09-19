@@ -184,8 +184,11 @@ async fn main() -> Result<()> {
             let image = bitmap.as_image();
             let rgba = image.as_rgba8().unwrap();
 
+            let base_input_pdf = Path::new(&input_pdf).file_name().unwrap().to_str().unwrap();
+
             // write to png
-            let page_path = input_pdf.replace(".pdf", format!("-page-{:06}.png", page_no).as_str());
+            let page_path =
+                base_input_pdf.replace(".pdf", format!("-page-{:06}.png", page_no).as_str());
             let image_path = dir_path.join(page_path);
 
             // write to memory buffer first
@@ -225,7 +228,7 @@ async fn main() -> Result<()> {
             println!("Sending request to Ollama {:?}", ollama_url);
             let mut stream = ollama.generate_stream(&messages, &options);
             let content_name =
-                input_pdf.replace(".pdf", format!("-page-{:06}.md", page_no).as_str());
+                base_input_pdf.replace(".pdf", format!("-page-{:06}.md", page_no).as_str());
             let content_path = dir_path.join(content_name);
 
             let handle = tokio::spawn(async move {
